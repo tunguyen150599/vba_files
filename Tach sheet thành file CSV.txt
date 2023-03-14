@@ -1,0 +1,28 @@
+Sub tachsheet()
+Application.ScreenUpdating = False
+Application.DisplayAlerts = False
+Dim sh As Worksheet
+For Each sh In Worksheets
+    Sheets.Copy
+    ActiveWorkbook.SaveAs ThisWorkbook.Path & "\" & sh.Name & ".csv", FileFormat:=xlCSVUTF8 'dinh dang la file CSV
+    ActiveWorkbook.Close
+Next
+Application.ScreenUpdating = True
+Application.DisplayAlerts = True
+End Sub
+
+---
+Sub SplitEachWorksheet()
+    Dim FPath As String
+        FPath = Application.ActiveWorkbook.Path
+        Application.ScreenUpdating = False
+        Application.DisplayAlerts = False
+            For Each ws In ThisWorkbook.Sheets
+                ws.Copy
+                Application.ActiveWorkbook.SaveAs Filename:=FPath & "\" & ws.Name & ".csv", FileFormat:=xlCSVUTF8 'dinh dang la file CSV
+                Application.ActiveWorkbook.Close False
+            Next
+        Application.DisplayAlerts = True
+        Application.ScreenUpdating = True
+End Sub
+

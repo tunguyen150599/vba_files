@@ -1,0 +1,31 @@
+Sub taolienket()
+
+Dim wb As Workbook
+Dim ws As Worksheet
+Dim isheet As Integer
+Dim irow As Integer
+
+Application.ScreenUpdating = False
+
+'Khoi tao
+Set wb = ThisWorkbook
+Set ws = wb.Sheets("Menu")
+'''''''
+
+'Tao vong lap de quet sheet
+isheet = 2
+irow = 4
+For isheet = 2 To wb.Sheets.Count
+    ws.Range("B" & irow).Value = isheet - 1
+    ws.Range("C" & irow).Value = wb.Sheets(isheet).Name
+    ws.Select
+    ws.Range("D" & irow).Select
+    ws.Hyperlinks.Add Anchor:=Selection, Address:="", SubAddress:= _
+        "'" & wb.Sheets(isheet).Name & "'!A1", TextToDisplay:="link"
+        
+    irow = irow + 1
+
+Next
+'''''''
+
+End Sub

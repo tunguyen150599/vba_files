@@ -1,0 +1,12 @@
+Sub copyfile()
+Path = "C:\Users\MSI\Documents\Sound recordings\" 'Thay bang duong dan can copy
+Filename = Dir(Path & "*.xls*")
+Do While Filename <> ""
+    Workbooks.Open Filename:=Path & Filename, ReadOnly:=True
+        For Each Sheet In ActiveWorkbook.Sheets
+            Sheet.Copy after:=ThisWorkbook.Sheets(1)
+        Next
+    Workbooks(Filename).Close
+    Filename = Dir()
+Loop
+End Sub
